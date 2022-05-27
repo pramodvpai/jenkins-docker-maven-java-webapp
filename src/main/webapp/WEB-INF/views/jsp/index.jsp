@@ -40,7 +40,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<h2>Welcome To Pramod Pai-Caltech CTME Project, India</h2>
+			<h2>Welcome To Pramod Pai-Caltech CTME Project!!, India</h2>
 			<h3>Contact training@Simplilearn</h3>
 		</div>	
 	</div>
