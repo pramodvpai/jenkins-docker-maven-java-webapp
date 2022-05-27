@@ -40,8 +40,8 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<h2>Welcome To LinuxWorld, India</h2>
-			<h3>Contact training@lwindia.com or mob 9351009002</h3>
+			<h2>Welcome To Caltech CTME Project</h2>
+			<h3>Contact training@Simplilearn</h3>
 		</div>	
 	</div>
 
