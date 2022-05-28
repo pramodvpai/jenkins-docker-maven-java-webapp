@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: 13.235.48.119
 gather_facts: false
 tasks:
 - name: Get running containers
