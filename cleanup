@@ -1,8 +1,7 @@
 ---
 - hosts: dev
-  gather_facts: false
-
-   tasks:
+  become: True
+  tasks:
  - name: Get running containers
    docker_host_info:
     containers: yes
