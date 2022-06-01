@@ -2,13 +2,13 @@
 - hosts: dev
   become: True
   tasks:
- - name: Get running containers
-   docker_host_info:
+- name: Get running containers
+  docker_host_info:
     containers: yes
-   register: docker_info
+    register: docker_info
 
- - name: Stop running containers
-   docker_container:
-     name: "{{ item }}"
-     state: stopped
-   loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+- name: Stop running containers
+  docker_container:
+    name: "{{ item }}"
+    state: stopped
+  loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
