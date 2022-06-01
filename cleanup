@@ -9,4 +9,8 @@
       docker_container:
         name: '{{ item.Names[0] | regex_replace("^/", "") }}'
         state: stopped
+    - name: Remove all images
+      docker_image:
+        name: "{{ item }}"
+        state: absent
       loop: '{{ docker_info.containers }}'
