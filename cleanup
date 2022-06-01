@@ -10,6 +10,11 @@
         name: '{{ item.Names[0] | regex_replace("^/", "") }}'
         state: stopped
       loop: '{{ docker_info.containers }}'  
+    - name: Get details of all images
+      docker_host_info:
+        images: yes
+        verbose_output: yes
+      register: image_info
     - name: Remove all images
       docker_image:
         name: "{{ item }}"
