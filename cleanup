@@ -12,6 +12,6 @@
       loop: '{{ docker_info.containers }}'  
     - name: Remove all images
       docker_image:
-        name: "{{ item }}"
+        name: '{{ item }}'
         state: absent
       loop: '{{ image_info.images | map(attribute='Id') | list }}'
