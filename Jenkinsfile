@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy webAPP in DEV Env') {
             steps {
                 sh 'sudo docker rm -f myjavaapp'
-                sh "sudo docker run  -d  -p  8080:8080 --name myjavaapp   pramodvpp/javaweb:${BUILD_TAG}"
+                ansiblePlaybook credentialsId: 'ansible-master-slave', disableHostKeyChecking: true,extras: "-e BUILD_TAG=${BUILD_TAG}", installation: 'Ansible', inventory: 'dev.inv', playbook: 'docker_deploy'
                 //sh 'whoami'
             }
             
@@ -100,9 +100,6 @@ pipeline {
         }
         }
         
-        
-         
-        
         stage('Deploy webAPP in Prod Env') {
             steps {
                
@@ -112,13 +109,23 @@ pipeline {
                     sh "ssh ec2-user@13.232.95.15 sudo docker run  -d  -p  8080:8080 --name myjavaapp   pramodvpp/javaweb:${BUILD_TAG}"
                 }
 
+
+            }
+        }
+         
+         stage('Cleanup') {
+           steps {
+             sh 'sudo docker rm -f myjavaapp'
+             ansiblePlaybook credentialsId: 'ansible-master-slave', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'dev.inv', playbook: 'cleanup'
+                //sh 'whoami'
             }
             
-        } 
-        
-    
-        
-    }
-    
-    
+        }
+               
+      
+
 }
+
+}
+ 
+
