@@ -48,7 +48,7 @@
 
 	<hr>
 	<footer>
-		<p>&copy; Nov Cohort 2022</p>
+		<p>&copy; Pramod V Pai Dec Cohort 2022</p>
 	</footer>
 </div>
 
