@@ -73,13 +73,15 @@ pipeline {
             steps {
             retry(5) {
                 sh 'curl --silent http://13.126.242.227:8080/java-web-app/ |  grep India'
-               }
+                sh 'echo >/dev/tcp/13.126.242.227/8080 && echo "port $port is open"'
+                sh 'curl -ls http://13.126.242.227:8080 | head -1'
+                sh 'curl -s -o /dev/null -w "%{http_code}" http://13.126.242.227:8080/java-web-app/'
+                       }
+    }
+        
             }
-        }
-          
          
-         
-         
+        
         stage('approved') {
             steps {
                 
@@ -121,11 +123,17 @@ pipeline {
             }
             
         }
-               
-      
-
-}
-
-}
+                
+        stage('Health checker') {
+            steps {
+                sh 'curl http://13.126.242.227:8080/java-web-app/'
+            }
+        }
+            stage ('Email Notification') {
+                    steps {
+                    emailext attachLog: true, from: 'admin@jenkins-master', body: '''Hi System Admin,Please find the status of Build of Production Env Thank you''', compressLog: true, subject: 'Post Build Status-Production', to: 'vpramodpai@yahoo.co.in'
+                }
+        }    }
+    }
  
-
+   
